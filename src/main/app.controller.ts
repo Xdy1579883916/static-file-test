@@ -1,4 +1,7 @@
+import * as fs from 'node:fs/promises'
+import { join } from 'node:path'
 import { Controller, IpcHandle, IpcSend } from 'einf'
+import { app } from 'electron'
 import { AppService } from './app.service'
 
 @Controller()
@@ -13,11 +16,10 @@ export class AppController {
   }
 
   @IpcHandle('send-msg')
-  public async handleSendMsg(msg: string): Promise<string> {
-    setTimeout(() => {
-      this.replyMsg(msg)
-    }, this.appService.getDelayTime() * 1000)
-
-    return `The main process received your message: ${msg}`
+  public async handleSendMsg(): Promise<string> {
+    const text = await fs.readFile(join(app.getAppPath(), 'proto/wss.proto'), {
+      encoding: 'utf-8',
+    })
+    return text.toString()
   }
 }

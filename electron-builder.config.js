@@ -10,6 +10,8 @@ const config = {
   npmRebuild: false,
   files: [
     'dist/main/**/*',
+    'src/main/proto/wss.proto',
+    'dist/main/proto/wss.proto',
     'dist/preload/**/*',
     'dist/render/**/*',
   ],
