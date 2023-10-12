@@ -1,0 +1,14 @@
+{
+  "extends": "@lightwing",
+  "rules": {
+    "n/prefer-global/process": "off"
+  },
+  "overrides": [
+    {
+      "files": "src/main/**/*.ts",
+      "rules": {
+        "@typescript-eslint/consistent-type-imports": "off"
+      }
+    }
+  ]
+}
